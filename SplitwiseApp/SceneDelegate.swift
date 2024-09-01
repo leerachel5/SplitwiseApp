@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Embed the root view controller in a navigation controller
         let navigationController = UINavigationController()
-        let rootViewController = ViewController()
+        let rootViewController = TripListView()
         navigationController.pushViewController(rootViewController, animated: false)
         
         window?.rootViewController = navigationController
