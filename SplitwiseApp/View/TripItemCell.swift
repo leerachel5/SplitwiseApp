@@ -64,6 +64,11 @@ class TripItemCell: UITableViewCell {
         super.init(coder: coder)
     }
     
+    // MARK: Prepare For Reuse
+    override func prepareForReuse() {
+        participantsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    }
+    
     // MARK: Interface
     func configure(trip: Trip) {
         set(trip: trip)
