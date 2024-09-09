@@ -17,7 +17,6 @@ class TripListViewController: UITableViewController {
         
         Task { [weak self] in
             await self?.tripsViewModel.fetchTrips()
-            
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -77,7 +76,6 @@ class TripListViewController: UITableViewController {
                 )
                 Task { [weak self] in
                     await self?.tripsViewModel.addTrip(trip: newTrip)
-                    
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
                     }
@@ -107,6 +105,20 @@ extension TripListViewController {
             return cell
         } else {
             fatalError("[TripListView] Type mismatch: Dequeued cell is not of type TripItemCell.")
+        }
+    }
+}
+
+// MARK: UITableViewDelegate
+extension TripListViewController {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            Task {
+                await self.tripsViewModel.removeTrip(trip: tripsViewModel.trips[indexPath.row])
+                DispatchQueue.main.async {
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            }
         }
     }
 }

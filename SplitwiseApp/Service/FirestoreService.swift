@@ -46,4 +46,8 @@ struct FirestoreService {
         }
         return decodedObjects
     }
+    
+    func deleteDocument(collectionPath: String, document: String) async throws {
+        try await db.collection(collectionPath).document(document).delete()
+    }
 }

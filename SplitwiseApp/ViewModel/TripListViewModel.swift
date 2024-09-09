@@ -19,7 +19,7 @@ class TripListViewModel {
     func addTrip(trip: Trip) async {
         do {
             try await FirestoreService.shared.setData(from: trip, collectionPath: "users/\(user.id.uuidString)/trips", document: trip.id.uuidString)
-            trips.append(trip)
+            await fetchTrips()
         } catch {
             print("[TripListViewModel]: Error adding trip.")
         }
@@ -30,6 +30,15 @@ class TripListViewModel {
             trips = try await FirestoreService.shared.getDocumentsAndDecode(to: Trip.self, collectionPath: "users/\(user.id.uuidString)/trips")
         } catch {
             print("[TripListViewModel]: Error fetching trips.")
+        }
+    }
+    
+    func removeTrip(trip: Trip) async {
+        do {
+            try await FirestoreService.shared.deleteDocument(collectionPath: "users/\(user.id.uuidString)/trips", document: trip.id.uuidString)
+            await fetchTrips()
+        } catch {
+            print("[TripListViewModel]: Error removing trip.")
         }
     }
 }
