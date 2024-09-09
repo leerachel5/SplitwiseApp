@@ -1,5 +1,5 @@
 //
-//  TripListView.swift
+//  TripListViewController.swift
 //  SplitwiseApp
 //
 //  Created by Rachel Lee on 8/31/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TripListView: UITableViewController {
+class TripListViewController: UITableViewController {
     
     var tripsViewModel: TripListViewModel
     
@@ -96,7 +96,7 @@ class TripListView: UITableViewController {
 }
 
 // MARK: UITableViewDataSource
-extension TripListView {
+extension TripListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tripsViewModel.trips.count
     }
