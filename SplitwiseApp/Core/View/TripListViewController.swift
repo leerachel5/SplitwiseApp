@@ -29,10 +29,17 @@ class TripListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .background
+        
         tableView.separatorStyle = .none
         tableView.register(TripItemCell.self, forCellReuseIdentifier: "TripItemCell")
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.primaryText,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)
+        ]
         
         self.title = "Trips"
         navigationItem.rightBarButtonItem = UIBarButtonItem(

@@ -13,8 +13,8 @@ class TripItemCell: UITableViewCell {
     let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 180/225, alpha: 0.5)
-        view.layer.borderColor = UIColor.gray.cgColor
+        view.backgroundColor = .surface
+        view.layer.borderColor = UIColor.divider.cgColor
         view.layer.borderWidth = 4
         view.layer.cornerRadius = 12
         view.clipsToBounds = true
@@ -71,6 +71,8 @@ class TripItemCell: UITableViewCell {
     
     // MARK: Interface
     func configure(trip: Trip) {
+        contentView.backgroundColor = .background
+        registerTraitChanges()
         set(trip: trip)
         layoutViews()
         setConstraints()
@@ -88,7 +90,7 @@ class TripItemCell: UITableViewCell {
     private func set(tripName: String) {
         tripNameLabel.text = tripName
         tripNameLabel.font = .systemFont(ofSize: 32)
-        tripNameLabel.textColor = .black
+        tripNameLabel.textColor = .primaryText
     }
     
     private func set(startDate: Date, endDate: Date) {
@@ -107,16 +109,16 @@ class TripItemCell: UITableViewCell {
         
         dateLabelView.text = dateLabelText
         dateLabelView.font = .systemFont(ofSize: 18)
-        dateLabelView.textColor = .gray
+        dateLabelView.textColor = .secondaryText
     }
     
     private func set(participants: [User]) {
         for _ in participants {
             let participantView = UIView()
             participantView.translatesAutoresizingMaskIntoConstraints = false
-            participantView.backgroundColor = .lightGray
+            participantView.backgroundColor = .surface
             participantView.layer.borderWidth = 1
-            participantView.layer.borderColor = UIColor.black.cgColor
+            participantView.layer.borderColor = UIColor.divider.cgColor
             participantView.layer.cornerRadius = 10
             participantView.layer.masksToBounds = true
             
@@ -169,4 +171,16 @@ class TripItemCell: UITableViewCell {
         participantsStackView.bottomAnchor.constraint(equalTo: trailingContainerView.bottomAnchor).isActive = true
     }
     
+    // MARK: Register Trait Change
+    /// Ensures all CGColors automatically adapt to dark and light mode.
+    func registerTraitChanges() {
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self]
+            (traitChangeEnv: Self, previousTraitCollection: UITraitCollection) in
+            guard let strongSelf = self else { return }
+            strongSelf.containerView.layer.borderColor = UIColor.divider.cgColor
+            for partipantView in strongSelf.participantsStackView.arrangedSubviews {
+                partipantView.layer.borderColor = UIColor.divider.cgColor
+            }
+        }
+    }
 }

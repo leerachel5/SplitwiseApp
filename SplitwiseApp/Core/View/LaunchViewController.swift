@@ -32,7 +32,7 @@ class LaunchViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Splitwise"
         label.font = .boldSystemFont(ofSize: 50)
-        label.textColor = UIColor.primary
+        label.textColor = .primary
         return label
     }()
     
@@ -41,9 +41,9 @@ class LaunchViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.setTitle("Launch", for: .normal)
-        button.setTitleColor(UIColor.primaryText, for: .normal)
-        button.setTitleColor(UIColor.secondaryText, for: .highlighted)
-        button.tintColor = UIColor.surface
+        button.setTitleColor(.primaryText, for: .normal)
+        button.setTitleColor(.secondaryText, for: .highlighted)
+        button.tintColor = .surface
         
         button.layer.borderWidth = 4
         button.layer.borderColor = UIColor.divider.cgColor
@@ -58,8 +58,8 @@ class LaunchViewController: UIViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.background
-        
+        self.view.backgroundColor = .background
+        registerTraitChanges()
         configureViews()
     }
     
@@ -117,6 +117,16 @@ class LaunchViewController: UIViewController {
                 TripListViewController(user: User(id: id, name: "test-user")), animated: true)
         } else {
             fatalError("ERROR - Invalid uuidString")
+        }
+    }
+    
+    // MARK: Register Trait Change
+    /// Ensures all CGColors automatically adapt to dark and light mode.
+    func registerTraitChanges() {
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self]
+            (traitChangeEnv: Self, previousTraitCollection: UITraitCollection) in
+            guard let strongSelf = self else { return }
+            strongSelf.launchButton.layer.borderColor = UIColor.divider.cgColor
         }
     }
 }
