@@ -15,10 +15,14 @@ class LaunchViewController: UIViewController {
         return view
     }()
     
-    private lazy var topContainer: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Splitwise"
+        label.font = .boldSystemFont(ofSize: 50)
+        label.textColor = .primary
+        label.textAlignment = .center
+        return label
     }()
     
     private lazy var bottomContainer: UIView = {
@@ -27,20 +31,40 @@ class LaunchViewController: UIViewController {
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Splitwise"
-        label.font = .boldSystemFont(ofSize: 50)
-        label.textColor = .primary
-        return label
+    private lazy var authButtonsStack: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.distribution = .fillProportionally
+        view.alignment = .center
+        view.spacing = 10
+        return view
     }()
     
-    private var launchButton: UIButton = {
+    private var loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.setTitle("Launch", for: .normal)
+        button.setTitle("Login", for: .normal)
+        button.setTitleColor(.primaryText, for: .normal)
+        button.setTitleColor(.secondaryText, for: .highlighted)
+        button.tintColor = .surface
+        
+        button.layer.borderWidth = 4
+        button.layer.borderColor = UIColor.divider.cgColor
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 14
+        button.configuration = UIButton.Configuration.borderedProminent()
+        button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 15, trailing: 20)
+        
+        return button
+    }()
+    
+    private var signUpButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.primaryText, for: .normal)
         button.setTitleColor(.secondaryText, for: .highlighted)
         button.tintColor = .surface
@@ -73,11 +97,13 @@ class LaunchViewController: UIViewController {
     private func layoutSubviews() {
         view.addSubview(safeAreaView)
         
-        safeAreaView.addSubview(topContainer)
+        safeAreaView.addSubview(titleLabel)
         safeAreaView.addSubview(bottomContainer)
         
-        topContainer.addSubview(titleLabel)
-        bottomContainer.addSubview(launchButton)
+        bottomContainer.addSubview(authButtonsStack)
+        
+        authButtonsStack.addArrangedSubview(loginButton)
+        authButtonsStack.addArrangedSubview(signUpButton)
     }
     
     private func setViewConstraints() {
@@ -87,28 +113,29 @@ class LaunchViewController: UIViewController {
             safeAreaView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             safeAreaView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             
-            topContainer.heightAnchor.constraint(equalTo: bottomContainer.heightAnchor),
+            titleLabel.heightAnchor.constraint(equalTo: bottomContainer.heightAnchor),
             
-            topContainer.topAnchor.constraint(equalTo: safeAreaView.topAnchor),
-            topContainer.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
-            topContainer.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: safeAreaView.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
-            bottomContainer.topAnchor.constraint(equalTo: topContainer.bottomAnchor),
+            bottomContainer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             bottomContainer.bottomAnchor.constraint(equalTo: safeAreaView.bottomAnchor),
             bottomContainer.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             bottomContainer.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
-            titleLabel.centerYAnchor.constraint(equalTo: topContainer.centerYAnchor),
-            titleLabel.centerXAnchor.constraint(equalTo: topContainer.centerXAnchor),
+            authButtonsStack.topAnchor.constraint(equalTo: bottomContainer.topAnchor),
+            authButtonsStack.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor),
+            authButtonsStack.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor),
             
-            launchButton.centerXAnchor.constraint(equalTo: bottomContainer.centerXAnchor),
-            launchButton.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor),
+            loginButton.widthAnchor.constraint(equalToConstant: 120),
+            signUpButton.widthAnchor.constraint(equalToConstant: 120)
         ])
     }
     
     // MARK: Gestures
     private func linkGestures() {
-        launchButton.addTarget(self, action: #selector(onLaunchButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(onLaunchButtonTapped), for: .touchUpInside)
     }
     
     @objc func onLaunchButtonTapped() {
@@ -126,7 +153,8 @@ class LaunchViewController: UIViewController {
         registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self]
             (traitChangeEnv: Self, previousTraitCollection: UITraitCollection) in
             guard let strongSelf = self else { return }
-            strongSelf.launchButton.layer.borderColor = UIColor.divider.cgColor
+            strongSelf.loginButton.layer.borderColor = UIColor.divider.cgColor
+            strongSelf.signUpButton.layer.borderColor = UIColor.divider.cgColor
         }
     }
 }
