@@ -50,6 +50,12 @@ class TripListViewController: UITableViewController {
             target: self,
             action: #selector(addButtonTapped)
         )
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Sign Out",
+            style: .plain,
+            target: self,
+            action: #selector(signOut)
+        )
         navigationItem.hidesBackButton = true
     }
     
@@ -100,6 +106,11 @@ class TripListViewController: UITableViewController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true)
+    }
+    
+    // MARK: Sign Out
+    @objc func signOut() {
+        navigationController?.popToRootViewController(animated: true)
     }
 
 }
