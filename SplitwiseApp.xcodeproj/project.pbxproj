@@ -80,13 +80,7 @@
 		2A73EF212C8410C8001174C7 /* SplitwiseApp */ = {
 			isa = PBXGroup;
 			children = (
-				2A73EF222C8410C8001174C7 /* AppDelegate.swift */,
-				2A73EF242C8410C8001174C7 /* SceneDelegate.swift */,
-				2A73EF372C841975001174C7 /* Model */,
-				2A73EF362C84195B001174C7 /* View */,
-				2A73EF452C8E3A8D001174C7 /* ViewModel */,
-				2A73EF4D2C8EAB93001174C7 /* Service */,
-				2A73EF4C2C8EAB80001174C7 /* Extensions */,
+				2A73EF602CB10494001174C7 /* Core */,
 				2A73EF4E2C8EABAA001174C7 /* Resources */,
 				2A73EF2D2C8410C9001174C7 /* LaunchScreen.storyboard */,
 			);
@@ -145,6 +139,20 @@
 				2A73EF302C8410C9001174C7 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		2A73EF602CB10494001174C7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF222C8410C8001174C7 /* AppDelegate.swift */,
+				2A73EF242C8410C8001174C7 /* SceneDelegate.swift */,
+				2A73EF372C841975001174C7 /* Model */,
+				2A73EF362C84195B001174C7 /* View */,
+				2A73EF452C8E3A8D001174C7 /* ViewModel */,
+				2A73EF4D2C8EAB93001174C7 /* Service */,
+				2A73EF4C2C8EAB80001174C7 /* Extensions */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
