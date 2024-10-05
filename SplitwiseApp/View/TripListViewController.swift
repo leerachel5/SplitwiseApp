@@ -40,6 +40,7 @@ class TripListViewController: UITableViewController {
             target: self,
             action: #selector(addButtonTapped)
         )
+        navigationItem.hidesBackButton = true
     }
     
     // MARK: Add Trips

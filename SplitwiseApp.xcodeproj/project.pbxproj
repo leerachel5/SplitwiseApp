@@ -21,6 +21,10 @@
 		2A73EF472C8E770D001174C7 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF462C8E770C001174C7 /* Encodable+Extensions.swift */; };
 		2A73EF492C8E79CA001174C7 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF482C8E79CA001174C7 /* Decodable+Extensions.swift */; };
 		2A73EF4B2C8E8A1B001174C7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A73EF4A2C8E8A1B001174C7 /* GoogleService-Info.plist */; };
+		2A73EF522C8EC27C001174C7 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2A73EF512C8EC27C001174C7 /* FirebaseAuth */; };
+		2A73EF552C978F8D001174C7 /* FirebaseAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A73EF542C978F8D001174C7 /* FirebaseAuthUI */; };
+		2A73EF572C9790DB001174C7 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF562C9790DB001174C7 /* LaunchViewController.swift */; };
+		2A73EF592C97963A001174C7 /* FirebaseEmailAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A73EF582C97963A001174C7 /* FirebaseEmailAuthUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,7 @@
 		2A73EF462C8E770C001174C7 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		2A73EF482C8E79CA001174C7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		2A73EF4A2C8E8A1B001174C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2A73EF562C9790DB001174C7 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +51,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A73EF592C97963A001174C7 /* FirebaseEmailAuthUI in Frameworks */,
 				2A73EF402C8E3155001174C7 /* FirebaseFirestore in Frameworks */,
+				2A73EF552C978F8D001174C7 /* FirebaseAuthUI in Frameworks */,
+				2A73EF522C8EC27C001174C7 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +98,7 @@
 			children = (
 				2A73EF262C8410C8001174C7 /* TripListViewController.swift */,
 				2A73EF3C2C841B02001174C7 /* TripItemCell.swift */,
+				2A73EF562C9790DB001174C7 /* LaunchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,6 +165,9 @@
 			name = SplitwiseApp;
 			packageProductDependencies = (
 				2A73EF3F2C8E3155001174C7 /* FirebaseFirestore */,
+				2A73EF512C8EC27C001174C7 /* FirebaseAuth */,
+				2A73EF542C978F8D001174C7 /* FirebaseAuthUI */,
+				2A73EF582C97963A001174C7 /* FirebaseEmailAuthUI */,
 			);
 			productName = SplitwiseApp;
 			productReference = 2A73EF1F2C8410C8001174C7 /* SplitwiseApp.app */;
@@ -187,6 +199,7 @@
 			mainGroup = 2A73EF162C8410C8001174C7;
 			packageReferences = (
 				2A73EF3E2C8E3155001174C7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2A73EF532C978F8D001174C7 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */,
 			);
 			productRefGroup = 2A73EF202C8410C8001174C7 /* Products */;
 			projectDirPath = "";
@@ -215,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A73EF572C9790DB001174C7 /* LaunchViewController.swift in Sources */,
 				2A73EF392C841988001174C7 /* Trip.swift in Sources */,
 				2A73EF442C8E3A87001174C7 /* TripListViewModel.swift in Sources */,
 				2A73EF272C8410C8001174C7 /* TripListViewController.swift in Sources */,
@@ -447,6 +461,15 @@
 				minimumVersion = 11.1.0;
 			};
 		};
+		2A73EF532C978F8D001174C7 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS.git";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 14.2.4;
+				minimumVersion = 0.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -454,6 +477,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2A73EF3E2C8E3155001174C7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		2A73EF512C8EC27C001174C7 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A73EF3E2C8E3155001174C7 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		2A73EF542C978F8D001174C7 /* FirebaseAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A73EF532C978F8D001174C7 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseAuthUI;
+		};
+		2A73EF582C97963A001174C7 /* FirebaseEmailAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A73EF532C978F8D001174C7 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */;
+			productName = FirebaseEmailAuthUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
