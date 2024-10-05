@@ -71,7 +71,7 @@ class TripItemCell: UITableViewCell {
     
     // MARK: Interface
     func configure(trip: Trip) {
-        contentView.backgroundColor = .background
+        backgroundColor = .background
         registerTraitChanges()
         set(trip: trip)
         layoutViews()
