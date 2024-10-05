@@ -36,12 +36,15 @@ class TripListViewController: UITableViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         
+        self.title = "Trips"
+        
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.primaryText,
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)
         ]
         
-        self.title = "Trips"
+        self.navigationController?.navigationBar.tintColor = .primary
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
