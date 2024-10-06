@@ -184,6 +184,9 @@ class SignUpViewController: UIViewController {
     }
     
     private func onLoginButtonTapped() {
-        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+        guard let navigationController = navigationController else { return }
+        var viewControllers = Array(navigationController.viewControllers.dropLast())
+        viewControllers.append(LoginViewController())
+        navigationController.setViewControllers(viewControllers, animated: true)
     }
 }
