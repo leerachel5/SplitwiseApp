@@ -1,38 +1,38 @@
 //
-//  LoginViewController.swift
+//  SignUpViewController.swift
 //  SplitwiseApp
 //
-//  Created by Rachel Lee on 10/5/24.
+//  Created by Rachel Lee on 10/6/24.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class SignUpViewController: UIViewController {
     private lazy var safeAreaView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private lazy var welcomeText: UILabel = {
+    private lazy var createAccountText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Welcome,"
+        label.text = "Create Account"
         label.font = .boldSystemFont(ofSize: 32)
         label.textColor = .label
         return label
     }()
     
-    private lazy var welcomeSubText: UILabel = {
+    private lazy var createAccountSubText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "glad to see you!"
+        label.text = "to get started now!"
         label.font = .systemFont(ofSize: 28)
         label.textColor = .secondaryLabel
         return label
     }()
     
-    private lazy var welcomeLabel: UIStackView = {
+    private lazy var createAccountLabel: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         return stack
     }()
     
-    private lazy var loginTextFields: UIStackView = {
+    private lazy var signUpTextFields: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -78,21 +78,25 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private lazy var forgotPasswordButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Forgot Password?", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .thin)
-        button.setTitleColor(.primaryText, for: .normal)
-        button.setTitleColor(.secondaryText, for: .highlighted)
-        return button
+    private lazy var confirmPasswordTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Confirm Password"
+        textField.textColor = .primaryText
+        textField.tintColor = .primary
+        textField.borderStyle = .roundedRect
+        textField.backgroundColor = .surface
+        textField.layer.borderColor = UIColor.divider.cgColor
+        textField.isSecureTextEntry = true
+        textField.textContentType = .password
+        return textField
     }()
     
-    private lazy var loginButton: UIButton = {
+    private lazy var signUpButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.setTitle("Login", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.primaryText, for: .normal)
         button.setTitleColor(.secondaryText, for: .highlighted)
         button.tintColor = .surface
@@ -107,11 +111,11 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    private lazy var signUpLabel: UILabel = {
+    private lazy var loginLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        label.text = "Don't have an account? Sign Up Now"
+        label.text = "Already have an account? Login Now"
         
         return label
     }()
@@ -127,15 +131,15 @@ class LoginViewController: UIViewController {
     
     private func layoutSubviews() {
         view.addSubview(safeAreaView)
-        safeAreaView.addSubview(welcomeLabel)
-        safeAreaView.addSubview(loginTextFields)
-        safeAreaView.addSubview(forgotPasswordButton)
-        safeAreaView.addSubview(loginButton)
-        safeAreaView.addSubview(signUpLabel)
-        welcomeLabel.addArrangedSubview(welcomeText)
-        welcomeLabel.addArrangedSubview(welcomeSubText)
-        loginTextFields.addArrangedSubview(emailTextField)
-        loginTextFields.addArrangedSubview(passwordTextField)
+        safeAreaView.addSubview(createAccountLabel)
+        safeAreaView.addSubview(signUpTextFields)
+        safeAreaView.addSubview(signUpButton)
+        safeAreaView.addSubview(loginLabel)
+        createAccountLabel.addArrangedSubview(createAccountText)
+        createAccountLabel.addArrangedSubview(createAccountSubText)
+        signUpTextFields.addArrangedSubview(emailTextField)
+        signUpTextFields.addArrangedSubview(passwordTextField)
+        signUpTextFields.addArrangedSubview(confirmPasswordTextField)
     }
     
     private func setViewConstraints() {
@@ -145,49 +149,41 @@ class LoginViewController: UIViewController {
             safeAreaView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             safeAreaView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             
-            welcomeLabel.topAnchor.constraint(equalTo: safeAreaView.topAnchor),
-            welcomeLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
-            welcomeLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
+            createAccountLabel.topAnchor.constraint(equalTo: safeAreaView.topAnchor),
+            createAccountLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
+            createAccountLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
-            loginTextFields.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 24),
-            loginTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
-            loginTextFields.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
+            signUpTextFields.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 24),
+            signUpTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
+            signUpTextFields.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
             emailTextField.widthAnchor.constraint(equalToConstant: 300),
             passwordTextField.widthAnchor.constraint(equalToConstant: 300),
+            confirmPasswordTextField.widthAnchor.constraint(equalToConstant: 300),
             
-            forgotPasswordButton.topAnchor.constraint(equalTo: loginTextFields.bottomAnchor, constant: 8),
-            forgotPasswordButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
+            signUpButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 14),
+            signUpButton.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
+            signUpButton.widthAnchor.constraint(equalToConstant: 200),
             
-            loginButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 8),
-            loginButton.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
-            loginButton.widthAnchor.constraint(equalToConstant: 200),
-            
-            signUpLabel.bottomAnchor.constraint(equalTo: safeAreaView.bottomAnchor),
-            signUpLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor)
+            loginLabel.bottomAnchor.constraint(equalTo: safeAreaView.bottomAnchor),
+            loginLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor)
         ])
     }
     
     // MARK: Gestures
     private func linkGestures() {
-        forgotPasswordButton.addTarget(self, action: #selector(onForgotPasswordTapped), for: .touchUpInside)
-        
         let textAttributes = [.foregroundColor: UIColor.link] as [NSAttributedString.Key: Any]
-        if let signUpTextRange = (signUpLabel.text as? NSString)?.range(of: "Sign Up Now") {
-            signUpLabel.addRangeGesture(
+        if let signUpTextRange = (loginLabel.text as? NSString)?.range(of: "Login Now") {
+            loginLabel.addRangeGesture(
                 at: signUpTextRange,
                 attributes: textAttributes
             ) { [weak self] in
-                self?.onSignUpTapped()
+                self?.onLoginButtonTapped()
             }
         }
     }
     
-    @objc private func onForgotPasswordTapped() {
-        print("forgot password button tapped")
-    }
-    
-    private func onSignUpTapped() {
-        self.navigationController?.pushViewController(SignUpViewController(), animated: true)
+    private func onLoginButtonTapped() {
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
 }

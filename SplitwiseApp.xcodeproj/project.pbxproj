@@ -28,6 +28,7 @@
 		2A73EF622CB20043001174C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF612CB20043001174C7 /* LoginViewController.swift */; };
 		2A73EF682CB24C02001174C7 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF672CB24C02001174C7 /* UILabel+Extensions.swift */; };
 		2A73EF6A2CB24C3F001174C7 /* RangeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */; };
+		2A73EF6D2CB2705C001174C7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF6C2CB2705C001174C7 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		2A73EF612CB20043001174C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2A73EF672CB24C02001174C7 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeGestureRecognizer.swift; sourceTree = "<group>"; };
+		2A73EF6C2CB2705C001174C7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				2A73EF3C2C841B02001174C7 /* TripItemCell.swift */,
 				2A73EF562C9790DB001174C7 /* LaunchViewController.swift */,
 				2A73EF612CB20043001174C7 /* LoginViewController.swift */,
+				2A73EF6C2CB2705C001174C7 /* SignUpViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				2A73EF232C8410C8001174C7 /* AppDelegate.swift in Sources */,
 				2A73EF472C8E770D001174C7 /* Encodable+Extensions.swift in Sources */,
 				2A73EF3D2C841B02001174C7 /* TripItemCell.swift in Sources */,
+				2A73EF6D2CB2705C001174C7 /* SignUpViewController.swift in Sources */,
 				2A73EF422C8E33E0001174C7 /* FirestoreService.swift in Sources */,
 				2A73EF3B2C8419B4001174C7 /* User.swift in Sources */,
 				2A73EF6A2CB24C3F001174C7 /* RangeGestureRecognizer.swift in Sources */,

@@ -136,10 +136,16 @@ class LaunchViewController: UIViewController {
     // MARK: Gestures
     private func linkGestures() {
         loginButton.addTarget(self, action: #selector(onLoginButtonTapped), for: .touchUpInside)
+        
+        signUpButton.addTarget(self, action: #selector(onSignUpButtonTapped), for: .touchUpInside)
     }
     
-    @objc func onLoginButtonTapped() {
+    @objc private func onLoginButtonTapped() {
         self.navigationController?.pushViewController(LoginViewController(), animated: true)
+    }
+    
+    @objc private func onSignUpButtonTapped() {
+        self.navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
     
     // MARK: Register Trait Change
