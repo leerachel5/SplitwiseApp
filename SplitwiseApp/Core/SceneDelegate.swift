@@ -21,6 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Embed the root view controller in a navigation controller
         let navigationController = UINavigationController()
+        navigationController.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.primaryText,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: .bold)
+        ]
+        navigationController.navigationBar.tintColor = .primary
+        
         let rootViewController = LaunchViewController()
         navigationController.pushViewController(rootViewController, animated: false)
         

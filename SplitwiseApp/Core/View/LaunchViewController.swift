@@ -128,23 +128,18 @@ class LaunchViewController: UIViewController {
             authButtonsStack.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor),
             authButtonsStack.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor),
             
-            loginButton.widthAnchor.constraint(equalToConstant: 120),
-            signUpButton.widthAnchor.constraint(equalToConstant: 120)
+            loginButton.widthAnchor.constraint(equalToConstant: 200),
+            signUpButton.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     
     // MARK: Gestures
     private func linkGestures() {
-        loginButton.addTarget(self, action: #selector(onLaunchButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(onLoginButtonTapped), for: .touchUpInside)
     }
     
-    @objc func onLaunchButtonTapped() {
-        if let id = UUID(uuidString: "31AD66D2-87C5-46BB-ADD4-4A45C539746B") {
-            self.navigationController?.pushViewController(
-                TripListViewController(user: User(id: id, name: "test-user")), animated: true)
-        } else {
-            fatalError("ERROR - Invalid uuidString")
-        }
+    @objc func onLoginButtonTapped() {
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
     // MARK: Register Trait Change

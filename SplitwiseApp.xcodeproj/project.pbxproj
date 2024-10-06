@@ -25,6 +25,9 @@
 		2A73EF552C978F8D001174C7 /* FirebaseAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A73EF542C978F8D001174C7 /* FirebaseAuthUI */; };
 		2A73EF572C9790DB001174C7 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF562C9790DB001174C7 /* LaunchViewController.swift */; };
 		2A73EF592C97963A001174C7 /* FirebaseEmailAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2A73EF582C97963A001174C7 /* FirebaseEmailAuthUI */; };
+		2A73EF622CB20043001174C7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF612CB20043001174C7 /* LoginViewController.swift */; };
+		2A73EF682CB24C02001174C7 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF672CB24C02001174C7 /* UILabel+Extensions.swift */; };
+		2A73EF6A2CB24C3F001174C7 /* RangeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		2A73EF482C8E79CA001174C7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		2A73EF4A2C8E8A1B001174C7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2A73EF562C9790DB001174C7 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		2A73EF612CB20043001174C7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2A73EF672CB24C02001174C7 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeGestureRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,7 @@
 				2A73EF262C8410C8001174C7 /* TripListViewController.swift */,
 				2A73EF3C2C841B02001174C7 /* TripItemCell.swift */,
 				2A73EF562C9790DB001174C7 /* LaunchViewController.swift */,
+				2A73EF612CB20043001174C7 /* LoginViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +126,7 @@
 			children = (
 				2A73EF462C8E770C001174C7 /* Encodable+Extensions.swift */,
 				2A73EF482C8E79CA001174C7 /* Decodable+Extensions.swift */,
+				2A73EF672CB24C02001174C7 /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -151,8 +159,17 @@
 				2A73EF452C8E3A8D001174C7 /* ViewModel */,
 				2A73EF4D2C8EAB93001174C7 /* Service */,
 				2A73EF4C2C8EAB80001174C7 /* Extensions */,
+				2A73EF6B2CB24C64001174C7 /* Helpers */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		2A73EF6B2CB24C64001174C7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,8 +253,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A73EF622CB20043001174C7 /* LoginViewController.swift in Sources */,
 				2A73EF572C9790DB001174C7 /* LaunchViewController.swift in Sources */,
 				2A73EF392C841988001174C7 /* Trip.swift in Sources */,
+				2A73EF682CB24C02001174C7 /* UILabel+Extensions.swift in Sources */,
 				2A73EF442C8E3A87001174C7 /* TripListViewModel.swift in Sources */,
 				2A73EF272C8410C8001174C7 /* TripListViewController.swift in Sources */,
 				2A73EF232C8410C8001174C7 /* AppDelegate.swift in Sources */,
@@ -245,6 +264,7 @@
 				2A73EF3D2C841B02001174C7 /* TripItemCell.swift in Sources */,
 				2A73EF422C8E33E0001174C7 /* FirestoreService.swift in Sources */,
 				2A73EF3B2C8419B4001174C7 /* User.swift in Sources */,
+				2A73EF6A2CB24C3F001174C7 /* RangeGestureRecognizer.swift in Sources */,
 				2A73EF252C8410C8001174C7 /* SceneDelegate.swift in Sources */,
 				2A73EF492C8E79CA001174C7 /* Decodable+Extensions.swift in Sources */,
 			);
