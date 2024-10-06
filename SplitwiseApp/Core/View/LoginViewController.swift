@@ -119,7 +119,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
-        
+        registerTraitChanges()
         layoutSubviews()
         setViewConstraints()
         linkGestures()
@@ -192,5 +192,15 @@ class LoginViewController: UIViewController {
         var viewControllers = Array(navigationController.viewControllers.dropLast())
         viewControllers.append(SignUpViewController())
         navigationController.setViewControllers(viewControllers, animated: true)
+    }
+    
+    // MARK: Register Trait Change
+    /// Ensures all CGColors automatically adapt to dark and light mode.
+    private func registerTraitChanges() {
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self]
+            (traitChangeEnv: Self, previousTraitCollection: UITraitCollection) in
+            guard let strongSelf = self else { return }
+            strongSelf.loginButton.layer.borderColor = UIColor.divider.cgColor
+        }
     }
 }

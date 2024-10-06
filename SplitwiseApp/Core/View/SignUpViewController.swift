@@ -123,7 +123,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
-        
+        registerTraitChanges()
         layoutSubviews()
         setViewConstraints()
         linkGestures()
@@ -188,5 +188,15 @@ class SignUpViewController: UIViewController {
         var viewControllers = Array(navigationController.viewControllers.dropLast())
         viewControllers.append(LoginViewController())
         navigationController.setViewControllers(viewControllers, animated: true)
+    }
+    
+    // MARK: Register Trait Change
+    /// Ensures all CGColors automatically adapt to dark and light mode.
+    private func registerTraitChanges() {
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self]
+            (traitChangeEnv: Self, previousTraitCollection: UITraitCollection) in
+            guard let strongSelf = self else { return }
+            strongSelf.signUpButton.layer.borderColor = UIColor.divider.cgColor
+        }
     }
 }

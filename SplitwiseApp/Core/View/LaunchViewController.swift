@@ -150,7 +150,7 @@ class LaunchViewController: UIViewController {
     
     // MARK: Register Trait Change
     /// Ensures all CGColors automatically adapt to dark and light mode.
-    func registerTraitChanges() {
+    private func registerTraitChanges() {
         registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self]
             (traitChangeEnv: Self, previousTraitCollection: UITraitCollection) in
             guard let strongSelf = self else { return }
