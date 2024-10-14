@@ -31,6 +31,7 @@
 		2A73EF772CBC8806001174C7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF762CBC8806001174C7 /* SignUpViewModel.swift */; };
 		2A73EF832CBCA027001174C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF822CBCA027001174C7 /* User.swift */; };
 		2A73EF852CBCA2A5001174C7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF842CBCA2A5001174C7 /* LoginViewModel.swift */; };
+		2A73EFA32CBCCE79001174C7 /* AuthValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EFA22CBCCE79001174C7 /* AuthValidationError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		2A73EF762CBC8806001174C7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		2A73EF822CBCA027001174C7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2A73EF842CBCA2A5001174C7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		2A73EFA22CBCCE79001174C7 /* AuthValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidationError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				2A73EF922CBCBACE001174C7 /* View */,
-				2A73EF982CBCBB76001174C7 /* Model */,
 				2A73EF912CBCBACA001174C7 /* ViewModel */,
 			);
 			path = Login;
@@ -246,8 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				2A73EF8B2CBCBA83001174C7 /* Launch */,
-				2A73EF8D2CBCBAA0001174C7 /* SignUp */,
-				2A73EF902CBCBAC6001174C7 /* Login */,
+				2A73EF9F2CBCCD72001174C7 /* Auth */,
 				2A73EF932CBCBADF001174C7 /* TripList */,
 			);
 			path = Widgets;
@@ -257,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				2A73EF822CBCA027001174C7 /* User.swift */,
+				2A73EFA22CBCCE79001174C7 /* AuthValidationError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,6 +268,16 @@
 				2A73EF382C841988001174C7 /* Trip.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2A73EF9F2CBCCD72001174C7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF982CBCBB76001174C7 /* Model */,
+				2A73EF8D2CBCBAA0001174C7 /* SignUp */,
+				2A73EF902CBCBAC6001174C7 /* Login */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +367,7 @@
 				2A73EF682CB24C02001174C7 /* UILabel+Extensions.swift in Sources */,
 				2A73EF832CBCA027001174C7 /* User.swift in Sources */,
 				2A73EF772CBC8806001174C7 /* SignUpViewModel.swift in Sources */,
+				2A73EFA32CBCCE79001174C7 /* AuthValidationError.swift in Sources */,
 				2A73EF442C8E3A87001174C7 /* TripListViewModel.swift in Sources */,
 				2A73EF272C8410C8001174C7 /* TripListViewController.swift in Sources */,
 				2A73EF232C8410C8001174C7 /* AppDelegate.swift in Sources */,

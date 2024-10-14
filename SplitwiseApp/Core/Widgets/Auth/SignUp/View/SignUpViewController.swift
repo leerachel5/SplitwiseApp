@@ -203,18 +203,22 @@ class SignUpViewController: UIViewController {
     }
     
     @objc private func onSignUpTapped() {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            Task { [weak self] in
-                guard let strongSelf = self else { return }
-                do {
-                    let authDataResult = try await strongSelf.signUpViewModel.createUser(email: email, password: password)
-                    
-                    let user = User(authDataResult.user)
-                    
-                    strongSelf.navigationController?.pushViewController(TripListViewController(user: user), animated: true)
-                } catch {
-                    strongSelf.errorLabel.isHidden = false
+        Task { [weak self] in
+            guard let strongSelf = self else { return }
+            do {
+                guard let email = strongSelf.emailTextField.text else { throw EmailValidationError.empty }
+                guard let password = strongSelf.passwordTextField.text else { throw PasswordValidationError.empty }
+                guard let confirmationPassword = strongSelf.confirmPasswordTextField.text else { throw PasswordValidationError.empty }
+                
+                let user = try await strongSelf.signUpViewModel.signUp(email: email, password: password, confirmationPassword: confirmationPassword)
+                strongSelf.navigationController?.pushViewController(TripListViewController(user: user), animated: true)
+            } catch {
+                if let localizedError = error as? LocalizedError {
+                    strongSelf.errorLabel.text = localizedError.errorDescription
+                } else {
+                    strongSelf.errorLabel.text = "An unknown error has occured."
                 }
+                strongSelf.errorLabel.isHidden = false
             }
         }
     }
