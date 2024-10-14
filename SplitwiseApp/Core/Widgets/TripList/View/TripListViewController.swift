@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class TripListViewController: UITableViewController {
     
@@ -104,7 +105,12 @@ class TripListViewController: UITableViewController {
     
     // MARK: Sign Out
     @objc func signOut() {
-        navigationController?.popToRootViewController(animated: true)
+        do {
+            try Auth.auth().signOut()
+            navigationController?.setViewControllers([LaunchViewController()], animated: true)
+        } catch {
+            print("Failed to sign out")
+        }
     }
 
 }

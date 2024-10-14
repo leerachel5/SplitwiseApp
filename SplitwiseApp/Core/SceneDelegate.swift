@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -27,7 +28,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         ]
         navigationController.navigationBar.tintColor = .primary
         
-        let rootViewController = LaunchViewController()
+        // Check if the user is already logged in
+        let rootViewController: UIViewController
+        if let user = Auth.auth().currentUser {
+            // User is signed in, navigate to the main app interface
+            print("User is signed in: \(user.email ?? "No Email")")
+            rootViewController = TripListViewController(user: User(user))
+        } else {
+            // User is not signed in, show the login screen
+            print("No user is signed in")
+            rootViewController = LaunchViewController()
+        }
         navigationController.pushViewController(rootViewController, animated: false)
         
         window?.rootViewController = navigationController
