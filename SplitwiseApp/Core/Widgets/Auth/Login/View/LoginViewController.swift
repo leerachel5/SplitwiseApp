@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     private lazy var safeAreaView: UIView = {
@@ -203,20 +204,24 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func loginTapped() {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            Task { [weak self] in
-                guard let strongSelf = self else { return }
-                do {
-                    let authDataResult = try await strongSelf.loginViewModel.login(email: email, password: password)
-                    
-                    let user = User(authDataResult.user)
-                    
-                    strongSelf.navigationController?.pushViewController(TripListViewController(user: user), animated: true)
-                } catch {
-                    strongSelf.errorLabel.isHidden = false
-                }
+        Task { [weak self] in
+            guard let strongSelf = self else { return }
+            do {
+                guard let email = strongSelf.emailTextField.text else { throw EmailValidationError.empty }
+                guard let password = strongSelf.passwordTextField.text else { throw PasswordValidationError.empty }
+                
+                let user = try await strongSelf.loginViewModel.login(email: email, password: password)
+                
+                strongSelf.navigationController?.pushViewController(TripListViewController(user: user), animated: true)
+            } catch {
+                strongSelf.displayError(error.localizedDescription)
             }
         }
+    }
+    
+    private func displayError(_ message: String) {
+        errorLabel.text = message
+        errorLabel.isHidden = false
     }
     
     @objc private func onForgotPasswordTapped() {

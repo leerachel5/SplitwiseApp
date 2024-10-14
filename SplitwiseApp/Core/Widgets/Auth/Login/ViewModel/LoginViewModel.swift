@@ -8,7 +8,8 @@
 import FirebaseAuth
 
 struct LoginViewModel {
-    func login(email: String, password: String) async throws -> AuthDataResult {
-        try await FirestoreService.shared.login(email: email, password: password)
+    func login(email: String, password: String) async throws -> User {
+        let authDataResult = try await FirestoreService.shared.login(email: email, password: password)
+        return User(authDataResult.user)
     }
 }

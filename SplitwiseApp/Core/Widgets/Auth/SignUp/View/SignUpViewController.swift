@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     private lazy var safeAreaView: UIView = {
@@ -213,14 +214,14 @@ class SignUpViewController: UIViewController {
                 let user = try await strongSelf.signUpViewModel.signUp(email: email, password: password, confirmationPassword: confirmationPassword)
                 strongSelf.navigationController?.pushViewController(TripListViewController(user: user), animated: true)
             } catch {
-                if let localizedError = error as? LocalizedError {
-                    strongSelf.errorLabel.text = localizedError.errorDescription
-                } else {
-                    strongSelf.errorLabel.text = "An unknown error has occured."
-                }
-                strongSelf.errorLabel.isHidden = false
+                strongSelf.displayError(error.localizedDescription)
             }
         }
+    }
+    
+    private func displayError(_ message: String) {
+        errorLabel.text = message
+        errorLabel.isHidden = false
     }
     
     private func onLoginTapped() {

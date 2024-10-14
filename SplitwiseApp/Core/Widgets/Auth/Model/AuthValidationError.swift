@@ -5,7 +5,7 @@
 //  Created by Rachel Lee on 10/13/24.
 //
 
-import Foundation
+import FirebaseAuth
 
 enum AuthValidationError: LocalizedError {
     case emailValidationError(EmailValidationError)
