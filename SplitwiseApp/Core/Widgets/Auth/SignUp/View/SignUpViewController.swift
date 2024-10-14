@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class SignUpViewController: UIViewController {
+    // MARK: View Initialization
     private lazy var safeAreaView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,12 +44,20 @@ class SignUpViewController: UIViewController {
         return stack
     }()
     
-    private lazy var errorLabel: UILabel = {
-        let label = UILabel()
+    private lazy var errorLabel: UIPaddedLabel = {
+        let label = UIPaddedLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "Invalid username or password"
+        label.numberOfLines = 0
         label.textColor = .error
+        
+        label.backgroundColor = .error.withAlphaComponent(0.1)
+        label.layer.borderColor = UIColor.error.cgColor
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 4
+        label.layer.borderWidth = 1
+        label.insets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        
         label.isHidden = true
         return label
     }()
@@ -72,6 +81,7 @@ class SignUpViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .surface
         textField.layer.borderColor = UIColor.divider.cgColor
+        textField.delegate = self
         return textField
     }()
     
@@ -86,6 +96,7 @@ class SignUpViewController: UIViewController {
         textField.layer.borderColor = UIColor.divider.cgColor
         textField.isSecureTextEntry = true
         textField.textContentType = .password
+        textField.delegate = self
         return textField
     }()
     
@@ -100,6 +111,7 @@ class SignUpViewController: UIViewController {
         textField.layer.borderColor = UIColor.divider.cgColor
         textField.isSecureTextEntry = true
         textField.textContentType = .password
+        textField.delegate = self
         return textField
     }()
     
@@ -131,8 +143,10 @@ class SignUpViewController: UIViewController {
         return label
     }()
     
-    var signUpViewModel = SignUpViewModel()
+    // MARK: Instance Properties
+    private let signUpViewModel = SignUpViewModel()
     
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
@@ -168,8 +182,8 @@ class SignUpViewController: UIViewController {
             createAccountLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
             errorLabel.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 16),
-            errorLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
-            errorLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
+            errorLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
+            errorLabel.widthAnchor.constraint(equalToConstant: 300),
             
             signUpTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20),
             signUpTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
@@ -239,5 +253,12 @@ class SignUpViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.signUpButton.layer.borderColor = UIColor.divider.cgColor
         }
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension SignUpViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        errorLabel.isHidden = true
     }
 }

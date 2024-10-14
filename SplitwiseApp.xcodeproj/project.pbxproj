@@ -32,6 +32,7 @@
 		2A73EF832CBCA027001174C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF822CBCA027001174C7 /* User.swift */; };
 		2A73EF852CBCA2A5001174C7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF842CBCA2A5001174C7 /* LoginViewModel.swift */; };
 		2A73EFA32CBCCE79001174C7 /* AuthValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EFA22CBCCE79001174C7 /* AuthValidationError.swift */; };
+		2A73EFAE2CBD13F1001174C7 /* UIPaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EFAD2CBD13F1001174C7 /* UIPaddedLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		2A73EF822CBCA027001174C7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2A73EF842CBCA2A5001174C7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		2A73EFA22CBCCE79001174C7 /* AuthValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidationError.swift; sourceTree = "<group>"; };
+		2A73EFAD2CBD13F1001174C7 /* UIPaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaddedLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */,
+				2A73EFAD2CBD13F1001174C7 /* UIPaddedLabel.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				2A73EF472C8E770D001174C7 /* Encodable+Extensions.swift in Sources */,
 				2A73EF852CBCA2A5001174C7 /* LoginViewModel.swift in Sources */,
 				2A73EF3D2C841B02001174C7 /* TripItemCell.swift in Sources */,
+				2A73EFAE2CBD13F1001174C7 /* UIPaddedLabel.swift in Sources */,
 				2A73EF6D2CB2705C001174C7 /* SignUpViewController.swift in Sources */,
 				2A73EF422C8E33E0001174C7 /* FirestoreService.swift in Sources */,
 				2A73EF6A2CB24C3F001174C7 /* RangeGestureRecognizer.swift in Sources */,

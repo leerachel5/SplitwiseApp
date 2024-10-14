@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
+    // MARK: View Initialization
     private lazy var safeAreaView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -43,12 +44,20 @@ class LoginViewController: UIViewController {
         return stack
     }()
     
-    private lazy var errorLabel: UILabel = {
-        let label = UILabel()
+    private lazy var errorLabel: UIPaddedLabel = {
+        let label = UIPaddedLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "Invalid username or password"
+        label.numberOfLines = 0
         label.textColor = .error
+        
+        label.backgroundColor = .error.withAlphaComponent(0.1)
+        label.layer.borderColor = UIColor.error.cgColor
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 4
+        label.layer.borderWidth = 1
+        label.insets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        
         label.isHidden = true
         return label
     }()
@@ -127,8 +136,10 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    let loginViewModel = LoginViewModel()
+    // MARK: Instance Properties
+    private let loginViewModel = LoginViewModel()
     
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
@@ -164,8 +175,8 @@ class LoginViewController: UIViewController {
             welcomeLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
             errorLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 16),
-            errorLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
-            errorLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
+            errorLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
+            errorLabel.widthAnchor.constraint(equalToConstant: 300),
             
             loginTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20),
             loginTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
