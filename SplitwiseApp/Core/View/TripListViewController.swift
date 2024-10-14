@@ -16,9 +16,10 @@ class TripListViewController: UITableViewController {
         super.init(style: .plain)
         
         Task { [weak self] in
-            await self?.tripsViewModel.fetchTrips()
+            guard let strongSelf = self else { return }
+            await strongSelf.tripsViewModel.fetchTrips()
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                strongSelf.tableView.reloadData()
             }
         }
     }

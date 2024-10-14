@@ -42,6 +42,16 @@ class LoginViewController: UIViewController {
         return stack
     }()
     
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "Invalid username or password"
+        label.textColor = .error
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var loginTextFields: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -116,6 +126,8 @@ class LoginViewController: UIViewController {
         return label
     }()
     
+    let loginViewModel = LoginViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
@@ -128,6 +140,7 @@ class LoginViewController: UIViewController {
     private func layoutSubviews() {
         view.addSubview(safeAreaView)
         safeAreaView.addSubview(welcomeLabel)
+        safeAreaView.addSubview(errorLabel)
         safeAreaView.addSubview(loginTextFields)
         safeAreaView.addSubview(forgotPasswordButton)
         safeAreaView.addSubview(loginButton)
@@ -149,7 +162,11 @@ class LoginViewController: UIViewController {
             welcomeLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             welcomeLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
-            loginTextFields.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 24),
+            errorLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 16),
+            errorLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
+            errorLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
+            
+            loginTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20),
             loginTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             loginTextFields.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
@@ -186,7 +203,20 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func loginTapped() {
-        print("Login tapped.")
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            Task { [weak self] in
+                guard let strongSelf = self else { return }
+                do {
+                    let authDataResult = try await strongSelf.loginViewModel.login(email: email, password: password)
+                    
+                    let user = User(authDataResult.user)
+                    
+                    strongSelf.navigationController?.pushViewController(TripListViewController(user: user), animated: true)
+                } catch {
+                    strongSelf.errorLabel.isHidden = false
+                }
+            }
+        }
     }
     
     @objc private func onForgotPasswordTapped() {

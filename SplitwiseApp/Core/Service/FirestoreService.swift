@@ -65,4 +65,18 @@ struct FirestoreService {
             }
         }
     }
+    
+    func login(email: String, password: String) async throws -> AuthDataResult {
+        try await withCheckedThrowingContinuation { continuation in
+            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else if let authResult = authResult {
+                    continuation.resume(returning: authResult)
+                } else {
+                    continuation.resume(throwing: NSError(domain: "AuthError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown error"]))
+                }
+            }
+        }
+    }
 }

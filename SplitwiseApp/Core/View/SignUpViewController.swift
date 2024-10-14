@@ -42,6 +42,16 @@ class SignUpViewController: UIViewController {
         return stack
     }()
     
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "Invalid username or password"
+        label.textColor = .error
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var signUpTextFields: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -134,6 +144,7 @@ class SignUpViewController: UIViewController {
     private func layoutSubviews() {
         view.addSubview(safeAreaView)
         safeAreaView.addSubview(createAccountLabel)
+        safeAreaView.addSubview(errorLabel)
         safeAreaView.addSubview(signUpTextFields)
         safeAreaView.addSubview(signUpButton)
         safeAreaView.addSubview(loginLabel)
@@ -155,7 +166,11 @@ class SignUpViewController: UIViewController {
             createAccountLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             createAccountLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
-            signUpTextFields.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 24),
+            errorLabel.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 16),
+            errorLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
+            errorLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
+            
+            signUpTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20),
             signUpTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             signUpTextFields.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
@@ -189,8 +204,17 @@ class SignUpViewController: UIViewController {
     
     @objc private func onSignUpTapped() {
         if let email = emailTextField.text, let password = passwordTextField.text {
-            Task {
-                try? await signUpViewModel.createUser(email: email, password: password)
+            Task { [weak self] in
+                guard let strongSelf = self else { return }
+                do {
+                    let authDataResult = try await strongSelf.signUpViewModel.createUser(email: email, password: password)
+                    
+                    let user = User(authDataResult.user)
+                    
+                    strongSelf.navigationController?.pushViewController(TripListViewController(user: user), animated: true)
+                } catch {
+                    strongSelf.errorLabel.isHidden = false
+                }
             }
         }
     }

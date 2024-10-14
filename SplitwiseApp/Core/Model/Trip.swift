@@ -5,7 +5,7 @@
 //  Created by Rachel Lee on 8/31/24.
 //
 
-import Foundation
+import FirebaseAuth
 
 struct Trip: Identifiable, Equatable, Codable {
     let id: UUID
