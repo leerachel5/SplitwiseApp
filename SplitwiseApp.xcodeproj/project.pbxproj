@@ -99,37 +99,6 @@
 			path = SplitwiseApp;
 			sourceTree = "<group>";
 		};
-		2A73EF362C84195B001174C7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2A73EF262C8410C8001174C7 /* TripListViewController.swift */,
-				2A73EF3C2C841B02001174C7 /* TripItemCell.swift */,
-				2A73EF562C9790DB001174C7 /* LaunchViewController.swift */,
-				2A73EF612CB20043001174C7 /* LoginViewController.swift */,
-				2A73EF6C2CB2705C001174C7 /* SignUpViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		2A73EF372C841975001174C7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2A73EF822CBCA027001174C7 /* User.swift */,
-				2A73EF382C841988001174C7 /* Trip.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		2A73EF452C8E3A8D001174C7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				2A73EF432C8E3A87001174C7 /* TripListViewModel.swift */,
-				2A73EF762CBC8806001174C7 /* SignUpViewModel.swift */,
-				2A73EF842CBCA2A5001174C7 /* LoginViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		2A73EF4C2C8EAB80001174C7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,12 +132,10 @@
 			children = (
 				2A73EF222C8410C8001174C7 /* AppDelegate.swift */,
 				2A73EF242C8410C8001174C7 /* SceneDelegate.swift */,
-				2A73EF372C841975001174C7 /* Model */,
-				2A73EF362C84195B001174C7 /* View */,
-				2A73EF452C8E3A8D001174C7 /* ViewModel */,
+				2A73EF972CBCBB22001174C7 /* Widgets */,
 				2A73EF4D2C8EAB93001174C7 /* Service */,
-				2A73EF4C2C8EAB80001174C7 /* Extensions */,
 				2A73EF6B2CB24C64001174C7 /* Helpers */,
+				2A73EF4C2C8EAB80001174C7 /* Extensions */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -179,6 +146,127 @@
 				2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2A73EF8B2CBCBA83001174C7 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF8C2CBCBA87001174C7 /* View */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		2A73EF8C2CBCBA87001174C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF562C9790DB001174C7 /* LaunchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2A73EF8D2CBCBAA0001174C7 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF8F2CBCBAB6001174C7 /* View */,
+				2A73EF8E2CBCBAAF001174C7 /* ViewModel */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		2A73EF8E2CBCBAAF001174C7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF762CBC8806001174C7 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2A73EF8F2CBCBAB6001174C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF6C2CB2705C001174C7 /* SignUpViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2A73EF902CBCBAC6001174C7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF922CBCBACE001174C7 /* View */,
+				2A73EF982CBCBB76001174C7 /* Model */,
+				2A73EF912CBCBACA001174C7 /* ViewModel */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		2A73EF912CBCBACA001174C7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF842CBCA2A5001174C7 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2A73EF922CBCBACE001174C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF612CB20043001174C7 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2A73EF932CBCBADF001174C7 /* TripList */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF942CBCBAE9001174C7 /* View */,
+				2A73EF992CBCBB80001174C7 /* Model */,
+				2A73EF952CBCBAED001174C7 /* ViewModel */,
+			);
+			path = TripList;
+			sourceTree = "<group>";
+		};
+		2A73EF942CBCBAE9001174C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF3C2C841B02001174C7 /* TripItemCell.swift */,
+				2A73EF262C8410C8001174C7 /* TripListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2A73EF952CBCBAED001174C7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF432C8E3A87001174C7 /* TripListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2A73EF972CBCBB22001174C7 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF8B2CBCBA83001174C7 /* Launch */,
+				2A73EF8D2CBCBAA0001174C7 /* SignUp */,
+				2A73EF902CBCBAC6001174C7 /* Login */,
+				2A73EF932CBCBADF001174C7 /* TripList */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		2A73EF982CBCBB76001174C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF822CBCA027001174C7 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2A73EF992CBCBB80001174C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2A73EF382C841988001174C7 /* Trip.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
