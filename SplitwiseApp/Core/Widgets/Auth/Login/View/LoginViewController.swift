@@ -81,6 +81,7 @@ class LoginViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .surface
         textField.layer.borderColor = UIColor.divider.cgColor
+        textField.delegate = self
         return textField
     }()
     
@@ -95,6 +96,7 @@ class LoginViewController: UIViewController {
         textField.layer.borderColor = UIColor.divider.cgColor
         textField.isSecureTextEntry = true
         textField.textContentType = .password
+        textField.delegate = self
         return textField
     }()
     
@@ -254,5 +256,13 @@ class LoginViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.loginButton.layer.borderColor = UIColor.divider.cgColor
         }
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        errorLabel.isHidden = true
+        return true
     }
 }

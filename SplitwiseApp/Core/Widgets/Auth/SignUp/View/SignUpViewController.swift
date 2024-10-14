@@ -258,7 +258,8 @@ class SignUpViewController: UIViewController {
 
 // MARK: UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         errorLabel.isHidden = true
+        return true
     }
 }
