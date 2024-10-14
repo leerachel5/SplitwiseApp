@@ -120,6 +120,8 @@ class SignUpViewController: UIViewController {
         return label
     }()
     
+    var signUpViewModel = SignUpViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
@@ -172,18 +174,28 @@ class SignUpViewController: UIViewController {
     
     // MARK: Gestures
     private func linkGestures() {
+        signUpButton.addTarget(self, action: #selector(onSignUpTapped), for: .touchUpInside)
+        
         let textAttributes = [.foregroundColor: UIColor.link] as [NSAttributedString.Key: Any]
         if let signUpTextRange = (loginLabel.text as? NSString)?.range(of: "Login Now") {
             loginLabel.addRangeGesture(
                 at: signUpTextRange,
                 attributes: textAttributes
             ) { [weak self] in
-                self?.onLoginButtonTapped()
+                self?.onLoginTapped()
             }
         }
     }
     
-    private func onLoginButtonTapped() {
+    @objc private func onSignUpTapped() {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            Task {
+                try? await signUpViewModel.createUser(email: email, password: password)
+            }
+        }
+    }
+    
+    private func onLoginTapped() {
         guard let navigationController = navigationController else { return }
         var viewControllers = Array(navigationController.viewControllers.dropLast())
         viewControllers.append(LoginViewController())

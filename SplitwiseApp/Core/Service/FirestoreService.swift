@@ -7,6 +7,7 @@
 
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseAuth
 
 struct FirestoreService {
     // Singleton FirebaseService instance
@@ -49,5 +50,19 @@ struct FirestoreService {
     
     func deleteDocument(collectionPath: String, document: String) async throws {
         try await db.collection(collectionPath).document(document).delete()
+    }
+    
+    func createUser(email: String, password: String) async throws -> AuthDataResult {
+        try await withCheckedThrowingContinuation { continuation in
+            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else if let authResult = authResult {
+                    continuation.resume(returning: authResult)
+                } else {
+                    continuation.resume(throwing: NSError(domain: "AuthError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown error"]))
+                }
+            }
+        }
     }
 }

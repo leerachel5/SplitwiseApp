@@ -29,6 +29,7 @@
 		2A73EF682CB24C02001174C7 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF672CB24C02001174C7 /* UILabel+Extensions.swift */; };
 		2A73EF6A2CB24C3F001174C7 /* RangeGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */; };
 		2A73EF6D2CB2705C001174C7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF6C2CB2705C001174C7 /* SignUpViewController.swift */; };
+		2A73EF772CBC8806001174C7 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EF762CBC8806001174C7 /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		2A73EF672CB24C02001174C7 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		2A73EF692CB24C3F001174C7 /* RangeGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeGestureRecognizer.swift; sourceTree = "<group>"; };
 		2A73EF6C2CB2705C001174C7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2A73EF762CBC8806001174C7 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				2A73EF432C8E3A87001174C7 /* TripListViewModel.swift */,
+				2A73EF762CBC8806001174C7 /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				2A73EF572C9790DB001174C7 /* LaunchViewController.swift in Sources */,
 				2A73EF392C841988001174C7 /* Trip.swift in Sources */,
 				2A73EF682CB24C02001174C7 /* UILabel+Extensions.swift in Sources */,
+				2A73EF772CBC8806001174C7 /* SignUpViewModel.swift in Sources */,
 				2A73EF442C8E3A87001174C7 /* TripListViewModel.swift in Sources */,
 				2A73EF272C8410C8001174C7 /* TripListViewController.swift in Sources */,
 				2A73EF232C8410C8001174C7 /* AppDelegate.swift in Sources */,

@@ -170,6 +170,8 @@ class LoginViewController: UIViewController {
     
     // MARK: Gestures
     private func linkGestures() {
+        loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        
         forgotPasswordButton.addTarget(self, action: #selector(onForgotPasswordTapped), for: .touchUpInside)
         
         let textAttributes = [.foregroundColor: UIColor.link] as [NSAttributedString.Key: Any]
@@ -181,6 +183,10 @@ class LoginViewController: UIViewController {
                 self?.onSignUpTapped()
             }
         }
+    }
+    
+    @objc private func loginTapped() {
+        print("Login tapped.")
     }
     
     @objc private func onForgotPasswordTapped() {
