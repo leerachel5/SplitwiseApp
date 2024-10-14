@@ -145,6 +145,7 @@ class SignUpViewController: UIViewController {
     
     // MARK: Instance Properties
     private let signUpViewModel = SignUpViewModel()
+    private var errorLabelConstraints: [NSLayoutConstraint] = []
     
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -171,6 +172,8 @@ class SignUpViewController: UIViewController {
     }
     
     private func setViewConstraints() {
+        createErrorLabelConstraints()
+        
         NSLayoutConstraint.activate([
             safeAreaView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             safeAreaView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -181,11 +184,7 @@ class SignUpViewController: UIViewController {
             createAccountLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             createAccountLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
-            errorLabel.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 16),
-            errorLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
-            errorLabel.widthAnchor.constraint(equalToConstant: 300),
-            
-            signUpTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20),
+            signUpTextFields.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 20, priority: .defaultLow),
             signUpTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             signUpTextFields.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
@@ -200,6 +199,15 @@ class SignUpViewController: UIViewController {
             loginLabel.bottomAnchor.constraint(equalTo: safeAreaView.bottomAnchor),
             loginLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor)
         ])
+    }
+    
+    private func createErrorLabelConstraints() {
+        errorLabelConstraints = [
+            errorLabel.topAnchor.constraint(equalTo: createAccountLabel.bottomAnchor, constant: 16),
+            errorLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
+            errorLabel.widthAnchor.constraint(equalToConstant: 300),
+            signUpTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20, priority: .defaultHigh)
+        ]
     }
     
     // MARK: Gestures
@@ -233,16 +241,32 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    private func displayError(_ message: String) {
-        errorLabel.text = message
-        errorLabel.isHidden = false
-    }
-    
     private func onLoginTapped() {
         guard let navigationController = navigationController else { return }
         var viewControllers = Array(navigationController.viewControllers.dropLast())
         viewControllers.append(LoginViewController())
         navigationController.setViewControllers(viewControllers, animated: true)
+    }
+    
+    // MARK: Error Label
+    private func displayError(_ message: String) {
+        setErrorLabelText(message)
+        setErrorLabelIsHidden(false)
+    }
+    
+    private func hideError() {
+        setErrorLabelIsHidden(true)
+    }
+    
+    private func setErrorLabelText(_ newText: String) {
+        errorLabel.text = newText
+        errorLabel.invalidateIntrinsicContentSize()
+    }
+    
+    private func setErrorLabelIsHidden(_ isHidden: Bool) {
+        errorLabel.isHidden = isHidden
+        isHidden ? NSLayoutConstraint.deactivate(errorLabelConstraints)
+                 : NSLayoutConstraint.activate(errorLabelConstraints)
     }
     
     // MARK: Register Trait Change
@@ -259,7 +283,7 @@ class SignUpViewController: UIViewController {
 // MARK: UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        errorLabel.isHidden = true
+        hideError()
         return true
     }
 }

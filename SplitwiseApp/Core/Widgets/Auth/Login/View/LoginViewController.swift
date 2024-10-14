@@ -140,6 +140,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Instance Properties
     private let loginViewModel = LoginViewModel()
+    private var errorLabelConstraints: [NSLayoutConstraint] = []
     
     // MARK: View Lifecycle
     override func viewDidLoad() {
@@ -151,6 +152,7 @@ class LoginViewController: UIViewController {
         linkGestures()
     }
     
+    // MARK: View Hierarchy
     private func layoutSubviews() {
         view.addSubview(safeAreaView)
         safeAreaView.addSubview(welcomeLabel)
@@ -165,7 +167,10 @@ class LoginViewController: UIViewController {
         loginTextFields.addArrangedSubview(passwordTextField)
     }
     
+    // MARK: View Constraints
     private func setViewConstraints() {
+        createErrorLabelConstraints()
+        
         NSLayoutConstraint.activate([
             safeAreaView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             safeAreaView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -176,11 +181,7 @@ class LoginViewController: UIViewController {
             welcomeLabel.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             welcomeLabel.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
-            errorLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 16),
-            errorLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
-            errorLabel.widthAnchor.constraint(equalToConstant: 300),
-            
-            loginTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20),
+            loginTextFields.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20, priority: .defaultLow),
             loginTextFields.leadingAnchor.constraint(equalTo: safeAreaView.leadingAnchor),
             loginTextFields.trailingAnchor.constraint(equalTo: safeAreaView.trailingAnchor),
             
@@ -197,6 +198,15 @@ class LoginViewController: UIViewController {
             signUpLabel.bottomAnchor.constraint(equalTo: safeAreaView.bottomAnchor),
             signUpLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor)
         ])
+    }
+    
+    private func createErrorLabelConstraints() {
+        errorLabelConstraints = [
+            errorLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 16),
+            errorLabel.centerXAnchor.constraint(equalTo: safeAreaView.centerXAnchor),
+            errorLabel.widthAnchor.constraint(equalToConstant: 300),
+            loginTextFields.topAnchor.constraint(equalTo: errorLabel.bottomAnchor, constant: 20, priority: .defaultHigh)
+        ]
     }
     
     // MARK: Gestures
@@ -232,11 +242,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func displayError(_ message: String) {
-        errorLabel.text = message
-        errorLabel.isHidden = false
-    }
-    
     @objc private func onForgotPasswordTapped() {
         print("forgot password button tapped")
     }
@@ -246,6 +251,27 @@ class LoginViewController: UIViewController {
         var viewControllers = Array(navigationController.viewControllers.dropLast())
         viewControllers.append(SignUpViewController())
         navigationController.setViewControllers(viewControllers, animated: true)
+    }
+    
+    // MARK: Error Label
+    private func displayError(_ message: String) {
+        setErrorLabelText(message)
+        setErrorLabelIsHidden(false)
+    }
+    
+    private func hideError() {
+        setErrorLabelIsHidden(true)
+    }
+    
+    private func setErrorLabelText(_ newText: String) {
+        errorLabel.text = newText
+        errorLabel.invalidateIntrinsicContentSize()
+    }
+    
+    private func setErrorLabelIsHidden(_ isHidden: Bool) {
+        errorLabel.isHidden = isHidden
+        isHidden ? NSLayoutConstraint.deactivate(errorLabelConstraints)
+                 : NSLayoutConstraint.activate(errorLabelConstraints)
     }
     
     // MARK: Register Trait Change
@@ -262,7 +288,7 @@ class LoginViewController: UIViewController {
 // MARK: UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        errorLabel.isHidden = true
+        hideError()
         return true
     }
 }
