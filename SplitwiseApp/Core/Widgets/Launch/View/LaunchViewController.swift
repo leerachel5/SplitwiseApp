@@ -141,7 +141,6 @@ class LaunchViewController: UIViewController {
     }
     
     @objc private func onLoginButtonTapped() {
-        self.navigationController?.addChild(<#T##childController: UIViewController##UIViewController#>)
         self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
