@@ -56,51 +56,10 @@ class TripListViewController: UITableViewController {
     
     // MARK: Add Trips
     @objc func addButtonTapped() {
-        let alertController = UIAlertController(title: "Add new trip", message: "Enter the trip details.", preferredStyle: .alert)
-        
-        alertController.addTextField { tripNameTextField in
-            tripNameTextField.placeholder = "New trip name"
-        }
-        alertController.addTextField { startDateTextField in
-            startDateTextField.placeholder = "Start date"
-        }
-        alertController.addTextField { endDateTextField in
-            endDateTextField.placeholder = "End date"
-        }
-        
-        let addAction = UIAlertAction(title: "Add", style: .default) { [weak self] _ in
-            guard let strongSelf = self else {
-                fatalError("[TripListView]: Reference to self is nil.")
-            }
-            if let newTripName = alertController.textFields?[0].text, !newTripName.isEmpty,
-               let newTripStartDateString = alertController.textFields?[1].text, !newTripStartDateString.isEmpty,
-               let newTripEndDateString = alertController.textFields?[2].text, !newTripEndDateString.isEmpty
-            {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM-dd-yyyy"
-                let newTripStartDate = dateFormatter.date(from: newTripStartDateString)
-                let newTripEndDate = dateFormatter.date(from: newTripEndDateString)
-                let newTrip = Trip(
-                    name: newTripName,
-                    participants: [strongSelf.tripsViewModel.user],
-                    startDate: newTripStartDate,
-                    endDate: newTripEndDate
-                )
-                Task { [weak self] in
-                    await self?.tripsViewModel.addTrip(trip: newTrip)
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                    }
-                }
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(addAction)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true)
+        let tripFormSheetViewController = TripFormSheetViewController()
+        tripFormSheetViewController.modalPresentationStyle = .formSheet
+        tripFormSheetViewController.delegate = self
+        present(tripFormSheetViewController, animated: true)
     }
     
     // MARK: Sign Out
@@ -140,6 +99,25 @@ extension TripListViewController {
                 DispatchQueue.main.async {
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
+            }
+        }
+    }
+}
+
+// MARK: TripFormSheetDelegate
+extension TripListViewController: TripFormSheetDelegate {
+    func createButtonTapped(tripName: String, startDate: Date, endDate: Date) {
+        let newTrip = Trip(
+            name: tripName,
+            participants: [tripsViewModel.user],
+            startDate: startDate,
+            endDate: endDate
+        )
+        Task { [weak self] in
+            guard let strongSelf = self else { return }
+            await strongSelf.tripsViewModel.addTrip(trip: newTrip)
+            DispatchQueue.main.async {
+                strongSelf.tableView.reloadData()
             }
         }
     }

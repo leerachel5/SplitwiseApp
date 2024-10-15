@@ -34,6 +34,7 @@
 		2A73EFA32CBCCE79001174C7 /* AuthValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EFA22CBCCE79001174C7 /* AuthValidationError.swift */; };
 		2A73EFAE2CBD13F1001174C7 /* UIPaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EFAD2CBD13F1001174C7 /* UIPaddedLabel.swift */; };
 		2A73EFB22CBDCC5F001174C7 /* NSLayoutAnchor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EFB12CBDCC5F001174C7 /* NSLayoutAnchor+Extensions.swift */; };
+		2A73EFB42CBDD58B001174C7 /* TripFormSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73EFB32CBDD58B001174C7 /* TripFormSheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		2A73EFA22CBCCE79001174C7 /* AuthValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidationError.swift; sourceTree = "<group>"; };
 		2A73EFAD2CBD13F1001174C7 /* UIPaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPaddedLabel.swift; sourceTree = "<group>"; };
 		2A73EFB12CBDCC5F001174C7 /* NSLayoutAnchor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutAnchor+Extensions.swift"; sourceTree = "<group>"; };
+		2A73EFB32CBDD58B001174C7 /* TripFormSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFormSheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 			children = (
 				2A73EF3C2C841B02001174C7 /* TripItemCell.swift */,
 				2A73EF262C8410C8001174C7 /* TripListViewController.swift */,
+				2A73EFB32CBDD58B001174C7 /* TripFormSheetViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				2A73EF852CBCA2A5001174C7 /* LoginViewModel.swift in Sources */,
 				2A73EF3D2C841B02001174C7 /* TripItemCell.swift in Sources */,
 				2A73EFAE2CBD13F1001174C7 /* UIPaddedLabel.swift in Sources */,
+				2A73EFB42CBDD58B001174C7 /* TripFormSheetViewController.swift in Sources */,
 				2A73EF6D2CB2705C001174C7 /* SignUpViewController.swift in Sources */,
 				2A73EFB22CBDCC5F001174C7 /* NSLayoutAnchor+Extensions.swift in Sources */,
 				2A73EF422C8E33E0001174C7 /* FirestoreService.swift in Sources */,
